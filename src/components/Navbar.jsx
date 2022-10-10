@@ -32,7 +32,7 @@ function Navbar() {
                         </li>
                         <li className="nav-item">
                             <a
-                                className="nav-link"
+                                className="nav-link active"
                                 href="https://github.com/banuaggun/react-memory-game"
                                 target="_blank"
                                 rel="noreferrer noopenner"
@@ -42,7 +42,7 @@ function Navbar() {
                         </li>
                         <li className="nav-item">
                             <a
-                                className="nav-link"
+                                className="nav-link active"
                                 href="https://portfolio-banuaggun.vercel.app/"
                                 target="_blank"
                                 rel="noreferrer noopenner"

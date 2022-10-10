@@ -1,11 +1,14 @@
 import React from 'react'
 
-function Card() {
+function Card({value}) {
   return (
-    <div className='card col-4'>
+    <div className='col-3'>
       
       <center>
-        <i className="bi bi-stars"></i>
+        <div className="mx-2 my-3 py-4 card">
+          <h2><i className="bi bi-stars"></i>{value}</h2>
+        </div>
+        
       </center>
     </div>
   )

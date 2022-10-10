@@ -1,13 +1,27 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import Card from './Card'
 
-function MainArea() {
+function MainArea(props) {
+  const {difficulty} = props;
+  //console.log(difficulty);
+
+  const [cardArray, setcardArray] = useState([]);
+
+  useEffect(() => {
+    let tempCardArray = [];
+    for(let i = 0; i < difficulty * difficulty; i++){
+      tempCardArray.push(i);
+    }
+    console.log(tempCardArray);
+    setcardArray(tempCardArray);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className='container my-3'>
-      <h1 className="text-center">Memory Game</h1>
       <div className="row">
-        <Card/>
-        <Card/><Card/><Card/>
+        {cardArray.map((element) => {
+          return <Card key={element} value={element} />
+        })}
       </div>
       
     </div>
