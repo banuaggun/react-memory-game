@@ -13,11 +13,11 @@ const iconClass = [
     "bi bi-postage-heart-fill",
 ];
 
-function Card({ value, visible }) {
+function Card({ value, visible, handleSelection }) {
     return (
         <div className="col-3">
             <center>
-                <div className="mx-2 my-3 py-4 card">
+                <div className="mx-2 my-3 py-4 card" onClick = {() => handleSelection(value)}>
                     <h2>
                         <i className={`${visible ? iconClass[value%8] : starsMarkClass}`}></i>
                         {value}
