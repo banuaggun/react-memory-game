@@ -51,7 +51,7 @@ function Navbar() {
                             </a>
                         </li>
                     </ul>
-                    <span className="navbar-text">text</span>
+                   
                 </div>
             </div>
         </nav>
