@@ -8,6 +8,8 @@ function MainArea(props) {
     const [cardArray, setCardArray] = useState([]);
     
     const [revealedCardsArray, setRevealedCardsArray] = useState([]);
+
+    const [cardsColorArray, setCardsColorArray] = useState([]);
     const [selection1, setSelection1] = useState(null);
     const [selection2, setSelection2] = useState(null);
     const [totalFlips, setTotalFlips] = useState(0);
@@ -24,6 +26,7 @@ function MainArea(props) {
         //console.log(tempCardArray);
         let shuffledArray = [];
         let revealedCards = [];
+        let tempCardColorArray = [];
         for (let i = 0; i < difficulty * difficulty; i++) {
             const randomIndex = Math.floor(
                 Math.random() * tempCardArray.length
@@ -31,17 +34,19 @@ function MainArea(props) {
             shuffledArray.push(tempCardArray[randomIndex]);
             tempCardArray.splice(randomIndex, 1);
             revealedCards.push(false);
+            tempCardColorArray.push("light");
         }
         //console.log(shuffledArray);
         setCardArray(shuffledArray);
         setRevealedCardsArray(revealedCards);
+        setCardsColorArray(tempCardColorArray);
         //console.log(revealedCards);
         // eslint-disable-next-line
     }, []);
 
     const handleSelection = (value) => {
         if (canSelect) {
-            console.log("clicked", value);
+            //console.log("clicked", value);
             if (selection1 === null) {
                 setSelection1(value);
                 let faceCardsArray = revealedCardsArray;
@@ -69,16 +74,47 @@ function MainArea(props) {
     };
 
     useEffect(() => {
+        //console.log("selection1 changed");
+        if(selection1 !== null){
+            console.log(cardsColorArray);
+            let newCardColorArray = {...cardsColorArray};
+            newCardColorArray[selection1] = `primary`;
+            setCardsColorArray(newCardColorArray); 
+        }
+    }, [selection1]);
+
+    useEffect(() => {
         if (selection1 !== null && selection2 !== null) {
             setTotalFlips((prevState) => prevState + 1);
+
+            let newCardColorArray = {...cardsColorArray};
+            newCardColorArray[selection2] = `primary`;
+            setCardsColorArray(newCardColorArray); 
+
             if (selection1 % 8 === selection2 % 8) {
-                console.log("same");
+                //console.log("same");
+
+                newCardColorArray = {...cardsColorArray};
+                newCardColorArray[selection1] = `success`;
+                newCardColorArray[selection2] = `success`;
+                setCardsColorArray(newCardColorArray);
+
                 handleReset();
                 setFlipsRemaining((prevState) => prevState - 1);
             }else {
-                console.log("not same");
+                //console.log("not same");
                 setCanSelect(false);
+                newCardColorArray = {...cardsColorArray};
+                newCardColorArray[selection1] = `danger`;
+                newCardColorArray[selection2] = `danger`;
+                setCardsColorArray(newCardColorArray);
+
                 setTimeout(() => {
+                    newCardColorArray = {...cardsColorArray};
+                    newCardColorArray[selection1] = `light`;
+                    newCardColorArray[selection2] = `light`;
+                    setCardsColorArray(newCardColorArray);
+
                     hideCards();
                     handleReset();
                     setCanSelect(true);
@@ -101,6 +137,7 @@ function MainArea(props) {
                             value={element}
                             visible={revealedCardsArray[element]}
                             handleSelection={handleSelection}
+                            bgColor={cardsColorArray[element]}
                         />
                     );
                 })}
