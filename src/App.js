@@ -1,11 +1,21 @@
-import React from 'react'
+import {useState} from 'react'
 import MainArea from './components/MainArea'
 import Navbar from './components/Navbar'
 
-function App() {
+const App = () => {
+
+  const [theme, setTheme] = useState('light');
+
+  const handleThemeChange = () => {
+    if(theme === 'light'){
+      setTheme('dark');
+    }else{
+      setTheme('light');
+    }
+  }
   return (
     <>
-      <Navbar/>
+      <Navbar theme={theme} switchTheme={handleThemeChange} />
       <MainArea difficulty="4" />
     </>
   )
