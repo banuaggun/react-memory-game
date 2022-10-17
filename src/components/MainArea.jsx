@@ -6,7 +6,7 @@ function MainArea(props) {
     const { difficulty } = props;
 
     const [cardArray, setCardArray] = useState([]);
-    
+
     const [revealedCardsArray, setRevealedCardsArray] = useState([]);
 
     const [cardsColorArray, setCardsColorArray] = useState([]);
@@ -75,11 +75,11 @@ function MainArea(props) {
 
     useEffect(() => {
         //console.log("selection1 changed");
-        if(selection1 !== null){
+        if (selection1 !== null) {
             console.log(cardsColorArray);
-            let newCardColorArray = {...cardsColorArray};
+            let newCardColorArray = { ...cardsColorArray };
             newCardColorArray[selection1] = `primary`;
-            setCardsColorArray(newCardColorArray); 
+            setCardsColorArray(newCardColorArray);
         }
     }, [selection1]);
 
@@ -87,30 +87,30 @@ function MainArea(props) {
         if (selection1 !== null && selection2 !== null) {
             setTotalFlips((prevState) => prevState + 1);
 
-            let newCardColorArray = {...cardsColorArray};
+            let newCardColorArray = { ...cardsColorArray };
             newCardColorArray[selection2] = `primary`;
-            setCardsColorArray(newCardColorArray); 
+            setCardsColorArray(newCardColorArray);
 
             if (selection1 % 8 === selection2 % 8) {
                 //console.log("same");
 
-                newCardColorArray = {...cardsColorArray};
+                newCardColorArray = { ...cardsColorArray };
                 newCardColorArray[selection1] = `success`;
                 newCardColorArray[selection2] = `success`;
                 setCardsColorArray(newCardColorArray);
 
                 handleReset();
                 setFlipsRemaining((prevState) => prevState - 1);
-            }else {
+            } else {
                 //console.log("not same");
                 setCanSelect(false);
-                newCardColorArray = {...cardsColorArray};
+                newCardColorArray = { ...cardsColorArray };
                 newCardColorArray[selection1] = `danger`;
                 newCardColorArray[selection2] = `danger`;
                 setCardsColorArray(newCardColorArray);
 
                 setTimeout(() => {
-                    newCardColorArray = {...cardsColorArray};
+                    newCardColorArray = { ...cardsColorArray };
                     newCardColorArray[selection1] = `light`;
                     newCardColorArray[selection2] = `light`;
                     setCardsColorArray(newCardColorArray);
@@ -125,23 +125,35 @@ function MainArea(props) {
 
     return (
         <div className="container my-3">
-            <h3>Selection1 : {selection1}</h3>
-            <h3>Selection2 : {selection2}</h3>
-            <h3>Total Flips: {totalFlips}</h3>
-            <h3>Flips Remaining: {flipsRemaining}</h3>
-            <div className="row">
-                {cardArray.map((element) => {
-                    return (
-                        <Card
-                            key={element}
-                            value={element}
-                            visible={revealedCardsArray[element]}
-                            handleSelection={handleSelection}
-                            bgColor={cardsColorArray[element]}
-                        />
-                    );
-                })}
-            </div>
+            {flipsRemaining > 0 ? (
+                <>
+                    <div className="d-flex justify-content-between py-2">
+                        <h5>Total Flips: {totalFlips}</h5>
+                        <h5>00 : 00</h5>
+                        <h5>Flips Remaining: {flipsRemaining}</h5>
+                    </div>
+
+                    <div className="row">
+                        {cardArray.map((element) => {
+                            return (
+                                <Card
+                                    key={element}
+                                    value={element}
+                                    visible={revealedCardsArray[element]}
+                                    handleSelection={handleSelection}
+                                    bgColor={cardsColorArray[element]}
+                                />
+                            );
+                        })}
+                    </div>
+                </>
+            ) : (
+                <div className="my-4">
+                    <h2 className="text-center">You Win</h2>
+                    <h5 className="text-center">Total Flips: {totalFlips}</h5>
+                    <h5 className="text-center">Total Time 00 : 00</h5>
+                </div>
+            )}
         </div>
     );
 }
