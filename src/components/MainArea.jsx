@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Card from "./Card";
+import Timer from "./Timer";
 
 function MainArea(props) {
     const { difficulty } = props;
@@ -17,6 +18,9 @@ function MainArea(props) {
         (props.difficulty * props.difficulty) / 2
     );
     const [canSelect, setCanSelect] = useState(true);
+
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
         let tempCardArray = [];
@@ -123,13 +127,25 @@ function MainArea(props) {
         }
     }, [selection2]);
 
+    const handleTimeIncrement = () => {
+        setSeconds(prevState => prevState+1);
+    }
+
+    useEffect(() => {
+        if(seconds === 60){
+            setSeconds(0);
+            setMinutes(prevState => prevState+1);
+        }
+    }, [seconds]);
     return (
         <div className="container my-3">
             {flipsRemaining > 0 ? (
                 <>
                     <div className="d-flex justify-content-between py-2">
                         <h5>Total Flips: {totalFlips}</h5>
-                        <h5>00 : 00</h5>
+                        <h5 className="d-flex align-items-center">
+                            <Timer minutes={minutes} seconds={seconds} incrementTime={handleTimeIncrement} />
+                        </h5>
                         <h5>Flips Remaining: {flipsRemaining}</h5>
                     </div>
 
@@ -151,7 +167,7 @@ function MainArea(props) {
                 <div className="my-4">
                     <h2 className="text-center">You Win</h2>
                     <h5 className="text-center">Total Flips: {totalFlips}</h5>
-                    <h5 className="text-center">Total Time 00 : 00</h5>
+                    <h5 className="text-center">Total Time {minutes} : {seconds}</h5>
                 </div>
             )}
         </div>
