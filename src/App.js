@@ -16,7 +16,7 @@ const App = () => {
   return (
     <>
       <Navbar theme={theme} switchTheme={handleThemeChange} />
-      <MainArea difficulty="4" />
+      <MainArea difficulty="4" theme={theme} />
     </>
   )
 }

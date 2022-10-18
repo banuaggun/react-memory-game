@@ -3,8 +3,15 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import Timer from "./Timer";
 
-function MainArea(props) {
-    const { difficulty } = props;
+function MainArea({difficulty, theme}) {
+    //const { difficulty } = props;
+
+    if(theme === 'light'){
+        document.body.style.backgroundColor = "#fff";
+    }else{
+        document.body.style.backgroundColor = "#292b2f";
+    }
+    
 
     const [cardArray, setCardArray] = useState([]);
 
@@ -15,7 +22,7 @@ function MainArea(props) {
     const [selection2, setSelection2] = useState(null);
     const [totalFlips, setTotalFlips] = useState(0);
     const [flipsRemaining, setFlipsRemaining] = useState(
-        (props.difficulty * props.difficulty) / 2
+        (difficulty * difficulty) / 2
     );
     const [canSelect, setCanSelect] = useState(true);
 
@@ -38,7 +45,7 @@ function MainArea(props) {
             shuffledArray.push(tempCardArray[randomIndex]);
             tempCardArray.splice(randomIndex, 1);
             revealedCards.push(false);
-            tempCardColorArray.push("light");
+            tempCardColorArray.push('light');
         }
         //console.log(shuffledArray);
         setCardArray(shuffledArray);
@@ -115,8 +122,8 @@ function MainArea(props) {
 
                 setTimeout(() => {
                     newCardColorArray = { ...cardsColorArray };
-                    newCardColorArray[selection1] = `light`;
-                    newCardColorArray[selection2] = `light`;
+                    newCardColorArray[selection1] = 'light';
+                    newCardColorArray[selection2] = 'light';
                     setCardsColorArray(newCardColorArray);
 
                     hideCards();
@@ -141,7 +148,7 @@ function MainArea(props) {
         <div className="container my-3">
             {flipsRemaining > 0 ? (
                 <>
-                    <div className="d-flex justify-content-between py-2">
+                    <div className={`d-flex justify-content-between py-2 text-${theme === 'light' ? 'dark' : 'light'}`}>
                         <h5>Total Flips: {totalFlips}</h5>
                         <h5 className="d-flex align-items-center">
                             <Timer minutes={minutes} seconds={seconds} incrementTime={handleTimeIncrement} />
@@ -158,16 +165,17 @@ function MainArea(props) {
                                     visible={revealedCardsArray[element]}
                                     handleSelection={handleSelection}
                                     bgColor={cardsColorArray[element]}
+                                    theme={theme}
                                 />
                             );
                         })}
                     </div>
                 </>
             ) : (
-                <div className="my-4">
-                    <h2 className="text-center">You Win</h2>
-                    <h5 className="text-center">Total Flips: {totalFlips}</h5>
-                    <h5 className="text-center">Total Time {minutes} : {seconds}</h5>
+                <div className={`my-4 text-center text-${theme === 'light' ? "dark" : "light"}`}>
+                    <h2>You Win</h2>
+                    <h5>Total Flips: {totalFlips}</h5>
+                    <h5>Total Time {minutes} : {seconds}</h5>
                 </div>
             )}
         </div>
