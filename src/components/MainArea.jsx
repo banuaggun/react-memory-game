@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import Card from "./Card";
 import Timer from "./Timer";
+import Win from "./Win";
 
 function MainArea({difficulty, theme}) {
     //const { difficulty } = props;
@@ -145,9 +146,9 @@ function MainArea({difficulty, theme}) {
         }
     }, [seconds]);
     return (
-        <div className="container my-3">
+        <div className="container">
             {flipsRemaining > 0 ? (
-                <>
+                <div className="my-3">
                     <div className={`d-flex justify-content-between py-2 text-${theme === 'light' ? 'dark' : 'light'}`}>
                         <h5>Total Flips: {totalFlips}</h5>
                         <h5 className="d-flex align-items-center">
@@ -170,13 +171,9 @@ function MainArea({difficulty, theme}) {
                             );
                         })}
                     </div>
-                </>
-            ) : (
-                <div className={`my-4 text-center text-${theme === 'light' ? "dark" : "light"}`}>
-                    <h2>You Win</h2>
-                    <h5>Total Flips: {totalFlips}</h5>
-                    <h5>Total Time {minutes} : {seconds}</h5>
                 </div>
+            ) : (
+               <Win totalFlips={totalFlips} minutes={minutes} seconds={seconds} theme={theme} />
             )}
         </div>
     );
