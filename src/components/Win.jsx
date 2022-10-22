@@ -15,7 +15,7 @@ function Win({totalFlips, minutes, seconds, theme}) {
                         <div className='card-body'>
                             <h5 className='mb-4'>Total Flips: {totalFlips}</h5>
                             <h5>Total Time {minutes} : {seconds}</h5>
-                            <a href="/" className={`btn btn-outline-${theme === 'light' ? "" : "light"} fw-bold border border-2 rounded-4 py-2 px-4 mt-4 text-default`}>New Game</a>
+                            <a href="/" className={`btn buton btn-outline-${theme === 'light' ? "" : "light"} fw-bold border border-2 rounded-4 py-2 px-4 mt-4 text-default`}>New Game</a>
                             </div>
                         </div>
                     </div>

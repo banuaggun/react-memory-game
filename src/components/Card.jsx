@@ -18,9 +18,9 @@ function Card({ value, visible, handleSelection, bgColor, theme }) {
         <div className="col-3">
             <center>
                 <div className={`mx-2 bg-${bgColor} bg-opacity-85 my-3 py-4 card`} onClick = {() => handleSelection(value)}>
-                    <h2>
+                    <h2 style={{fontSize:"2.2rem"}}>
                         <i className={`${visible ? iconClass[value%8] : starsMarkClass}`}></i>
-                        {value}
+                        
                     </h2>
                 </div>
             </center>

@@ -4,15 +4,7 @@ import Card from "./Card";
 import Timer from "./Timer";
 import Win from "./Win";
 
-function MainArea({difficulty, theme}) {
-    //const { difficulty } = props;
-
-    if(theme === 'light'){
-        document.body.style.backgroundColor = "#fff";
-    }else{
-        document.body.style.backgroundColor = "#292b2f";
-    }
-    
+function MainArea({difficulty, theme}) {    
 
     const [cardArray, setCardArray] = useState([]);
 
@@ -23,7 +15,7 @@ function MainArea({difficulty, theme}) {
     const [selection2, setSelection2] = useState(null);
     const [totalFlips, setTotalFlips] = useState(0);
     const [flipsRemaining, setFlipsRemaining] = useState(
-        (difficulty * difficulty) / 2
+        (difficulty * 4) / 2
     );
     const [canSelect, setCanSelect] = useState(true);
 
@@ -32,14 +24,14 @@ function MainArea({difficulty, theme}) {
 
     useEffect(() => {
         let tempCardArray = [];
-        for (let i = 0; i < difficulty * difficulty; i++) {
+        for (let i = 0; i < difficulty * 4; i++) {
             tempCardArray.push(i);
         }
         //console.log(tempCardArray);
         let shuffledArray = [];
         let revealedCards = [];
         let tempCardColorArray = [];
-        for (let i = 0; i < difficulty * difficulty; i++) {
+        for (let i = 0; i < difficulty * 4; i++) {
             const randomIndex = Math.floor(
                 Math.random() * tempCardArray.length
             );

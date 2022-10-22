@@ -1,12 +1,13 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function Navbar({theme, switchTheme}) {
     return (
         <nav className={`navbar navbar-expand-lg bg-${theme} navbar-${theme}`}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">
+                <Link to="/" className="navbar-brand">
                     Memory Game
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -21,14 +22,14 @@ function Navbar({theme, switchTheme}) {
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a
+                            <Link
                                 className="nav-link active"
                                 aria-current="page"
-                                href="/"
+                                to="/"
                                 rel="noreferrer noopenner"
                             >
-                                New Game
-                            </a>
+                                Home
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a
