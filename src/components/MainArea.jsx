@@ -5,6 +5,7 @@ import Timer from "./Timer";
 import Win from "./Win";
 
 function MainArea({difficulty, theme}) {    
+    const modValue = difficulty * 2;
 
     const [cardArray, setCardArray] = useState([]);
 
@@ -95,7 +96,7 @@ function MainArea({difficulty, theme}) {
             newCardColorArray[selection2] = `primary`;
             setCardsColorArray(newCardColorArray);
 
-            if (selection1 % 8 === selection2 % 8) {
+            if (selection1 % modValue === selection2 % modValue) {
                 //console.log("same");
 
                 newCardColorArray = { ...cardsColorArray };
@@ -158,6 +159,7 @@ function MainArea({difficulty, theme}) {
                                     visible={revealedCardsArray[element]}
                                     handleSelection={handleSelection}
                                     bgColor={cardsColorArray[element]}
+                                    difficulty={difficulty}
                                     theme={theme}
                                 />
                             );

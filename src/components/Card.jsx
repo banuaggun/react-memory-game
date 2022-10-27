@@ -11,15 +11,22 @@ const iconClass = [
     "bi bi-gift-fill",
     "bi bi-hypnotize",
     "bi bi-postage-heart-fill",
+    "bi bi-infinity",
+    "bi bi-puzzle",
+    "bi bi-film",
+    "bi bi-hearts",
 ];
 
-function Card({ value, visible, handleSelection, bgColor, theme }) {
+function Card({ value, visible, handleSelection, bgColor, theme, difficulty }) {
+
+    const modValue = difficulty * 2;
+
     return (
         <div className="col-3">
             <center>
                 <div className={`mx-2 bg-${bgColor} bg-opacity-85 my-3 py-4 card`} onClick = {() => handleSelection(value)}>
                     <h2 style={{fontSize:"2.2rem"}}>
-                        <i className={`${visible ? iconClass[value%8] : starsMarkClass}`}></i>
+                        <i className={`${visible ? iconClass[value%modValue] : starsMarkClass}`}></i>
                         
                     </h2>
                 </div>
