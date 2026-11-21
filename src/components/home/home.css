@@ -1,0 +1,349 @@
+.home-wrapper {
+  min-height: calc(100vh - 84px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 1rem 3rem;
+}
+
+.home-wrapper.theme-light {
+  color: #1e293b;
+}
+
+.home-wrapper.theme-dark {
+  color: #f8fafc;
+}
+
+.home-container {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.game-dock-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 50px;
+  width: 100%; 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.theme-light .game-dock-bar {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.theme-dark .game-dock-bar {
+  background: rgba(34, 37, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+}
+
+.level-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.dock-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 50px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  opacity: 0.72;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dock-tab:hover {
+  opacity: 1;
+}
+
+.dock-tab.active {
+  opacity: 1;
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.dock-divider {
+  width: 1.5px;
+  height: 30px;
+  background: rgba(128, 128, 128, 0.25);
+  flex-shrink: 0;
+}
+
+.howto-circle-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  flex-shrink: 0;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.theme-light .howto-circle-btn {
+  background: #f1f5f9;
+  color: #334155;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.theme-dark .howto-circle-btn {
+  background: #2c3037;
+  color: #e2e8f0;
+}
+
+.howto-circle-btn:hover {
+  transform: scale(1.06);
+}
+
+.howto-circle-btn.active {
+  background: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.howto-circle-btn .q-mark {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.howto-circle-btn .q-label {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.stage-container {
+  width: 100%;
+  animation: stageFadeIn 0.3s ease;
+}
+
+@keyframes stageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.stage-card {
+  padding: 2rem;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; 
+}
+
+.theme-light .stage-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.07);
+}
+
+.theme-dark .stage-card {
+  background: #22252a;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+}
+
+.level-stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.level-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.95rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+
+.grid-dimension {
+  font-size: 1.1rem;
+  font-weight: 800;
+  opacity: 0.65; 
+}
+
+.stage-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0; 
+  white-space: nowrap;
+}
+
+.stage-desc {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  opacity: 0.78;
+  margin: 0;
+}
+
+.stage-meta {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem; 
+  white-space: nowrap;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.stage-cta-btn {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border-radius: 50px;
+  border: none;
+  text-decoration: none;
+  font-size: 1.02rem;
+  font-weight: 700;
+  background: var(--accent, #6366f1);
+  color: #ffffff !important;
+  cursor: pointer;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent, #6366f1) 35%, transparent);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.stage-cta-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.howto-header h2 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.howto-header p {
+  font-size: 0.92rem;
+  opacity: 0.72;
+  margin: 0;
+}
+
+.howto-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(99, 102, 241, 0.15);
+  color: #6366f1;
+}
+
+.howto-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.step-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(128, 128, 128, 0.08);
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-box h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+}
+
+.step-box p {
+  font-size: 0.86rem;
+  opacity: 0.78;
+  margin: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 480px) {
+  .dock-tab {
+    padding: 0.55rem 0.45rem;
+    font-size: 0.84rem;
+  }
+
+  .tab-icon {
+    display: none; 
+  }
+
+  .howto-circle-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .stage-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+  }
+
+  .stage-title {
+    font-size: 1.45rem;
+  }
+}
