@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import MainArea from "./components/MainArea";
-import Navbar from "./components/Navbar";
+import FloatingNav from "./components/floating-nav/FloatingNav";
 
 const App = () => {
     const [theme, setTheme] = useState("light");
@@ -25,7 +25,7 @@ const App = () => {
     };
     return (
         <BrowserRouter>
-            <Navbar theme={theme} switchTheme={handleThemeChange} />
+            <FloatingNav theme={theme} switchTheme={handleThemeChange} />
             <Routes>
                 <Route path="/" element={<Home theme={theme} />} />
                 <Route
